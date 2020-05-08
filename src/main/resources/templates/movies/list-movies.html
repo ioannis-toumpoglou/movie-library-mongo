@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<title>My Movie Library</title>
+</head>
+
+<body>
+
+<div class="container">
+	<br>
+	<h3>My Movie Library</h3>
+	<hr>
+	
+	<a th:href="@{/movies/showAddForm}" class="btn btn-primary btn-sm mb-3">
+		Add Movie
+	</a>
+	
+	<table class="table table-bordered table-striped">
+		<thead class="thead-dark">
+			<tr>
+				<th>Title</th>
+				<th style="width:5em;">Year</th>
+				<th style="width:8em;">Category</th>
+				<th>Plot</th>
+				<th>Image</th>
+				<th style="width:10em;">Action</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="tempMovie : ${movies}" style="text-align:center; vertical-align:middle;">
+				<td th:text="${tempMovie.title}" style="text-align:left;"/>
+				<td th:text="${tempMovie.year}"/>
+				<td th:text="${tempMovie.category}"/>
+				<td th:text="${tempMovie.plot}" style="width:400px; height:180px; text-align:justify; "/>
+				<td>
+					<a th:href="@{${'/images/' + tempMovie.imageName}}" target="_blank">
+				 		<img th:src="@{${'/images/' + tempMovie.imageName}}" alt="No Image Available" width="100" />
+				 	</a>
+				</td>
+				<td>
+					<a th:href="@{/movies/showUpdateForm(movieId=${tempMovie.id})}" class="btn btn-info btn-sm">Update</a>
+					<a th:href="@{/movies/delete(movieId=${tempMovie.id})}" class="btn btn-danger btn-sm" onclick="if (!(confirm('Are you sure you want to delete this movie?'))) return false">Delete</a>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+
+</div>
+
+</body>
+
+</html>

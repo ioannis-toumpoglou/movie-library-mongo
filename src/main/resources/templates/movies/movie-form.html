@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<title>Save Movie</title>
+</head>
+
+<body>
+
+	<div class="container">
+		<br>
+		<h3>My Movie Library</h3>
+		<hr>
+		
+		<p class="h4 mb-4">Save Movie</p>
+		
+		<form action="/" th:action="@{/movies/save}"
+						 th:object="${movie}" method="POST" enctype="multipart/form-data">
+		
+			<input type="hidden" th:field="*{id}"/>
+		
+			<input type="text" th:field="*{title}" class="form-control mb-4 col-4" placeholder="Title" required="required">
+			<input type="number" min="1900" max="2030" th:field="*{year}" class="form-control mb-4 col-4" placeholder="Year" required="required">
+			<input type="text" th:field="*{category}" class="form-control mb-4 col-4" placeholder="Category" required="required">
+			<textarea rows="7" th:field="*{plot}" class="form-control mb-4 col-4" placeholder="Plot" required="required"></textarea>
+			<input type="file" name="image" class="form-control mb-4 col-4" placeholder="Image" required="required">			
+			<button type="submit" class="btn btn-info col-2">Save</button>
+		
+		</form>
+		
+		<hr>
+		<a th:href="@{/movies/list}">Back to Movie List</a>
+	
+	</div>
+
+</body>
+
+</html>
