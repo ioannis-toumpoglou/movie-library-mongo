@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.toumb.movielibrarymongo.entity.Movie;
+import com.toumb.movielibrarymongo.service.MovieService;
 
 @Controller
 @RequestMapping("/movies")
